@@ -24,6 +24,7 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -32,13 +33,18 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bookit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/bookit/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/CesDelPino/bookit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/bookit/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
+## Purpose and scope for the bookit GEM:
+- The app is designed to to make taking bookings for a one table restaurant.
 
-Everyone interacting in the Bookit project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/bookit/blob/master/CODE_OF_CONDUCT.md).
+### The problem
+- When bookings, are made by hand, there is a possibility to double book tables
+- It is designed to be used by the person taking the bookings, "the user".
+- The user will open the app when receiving a request to book the table. They will then be able to check the full open booking slots, and offer the client options for a booking. When the client decides on a time, the user can book the table for that time slot. The user will also be able to modify or cancel bookings at the request of the client or the management. 
+- Finally the app will be able to display a full booking schedule for the table.

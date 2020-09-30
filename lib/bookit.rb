@@ -1,16 +1,22 @@
+require "colorize"
 require_relative "bookit/version"
 require_relative "options"
 
-module Bookit
-  class Error < StandardError; 
-  end
-  # Your code goes here...
-end
+# module Bookit
+#   class Error < StandardError; 
+#   end
+#   # Your code goes here...
+# end
+
+#creating a help menu if an ARGV value is passed on start
 
 def help_menu(option)
-  case 
-  when option == "-h" || "--help" || "help"
+  case option
+  when "-h" || "--help" || "help"
     puts "this is the help menu"
+    exit
+  when "else"
+    puts "this is is different option"
     exit
   else
     puts "That is an unknown command, you can try the following......"
@@ -19,17 +25,26 @@ def help_menu(option)
 
 end
 
-
+#checking for ARG value and routing to opening_options or help statement 
 if ARGV.empty?
-  puts "Welcome to the bookit app"
-  caller = OpeningOptions.new
-  caller.openining_choice
+    puts "\n"
+    puts "                         Welcome to the bookit app for".colorize(:red)
+    puts "\n"
+    puts "**********************************************************************************************************".colorize(:red)
+    puts "███╗░░░███╗██╗░░░██╗  ██████╗░███████╗░██████╗████████╗░█████╗░██╗░░░██╗██████╗░░█████╗░███╗░░██╗████████╗".colorize(:light_blue)
+    puts "████╗░████║╚██╗░██╔╝  ██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║░░░██║██╔══██╗██╔══██╗████╗░██║╚══██╔══╝".colorize(:blue)
+    puts "██╔████╔██║░╚████╔╝░  ██████╔╝█████╗░░╚█████╗░░░░██║░░░███████║██║░░░██║██████╔╝███████║██╔██╗██║░░░██║░░░".colorize(:light_blue)
+    puts "██║╚██╔╝██║░░╚██╔╝░░  ██╔══██╗██╔══╝░░░╚═══██╗░░░██║░░░██╔══██║██║░░░██║██╔══██╗██╔══██║██║╚████║░░░██║░░░".colorize(:blue)
+    puts "██║░╚═╝░██║░░░██║░░░  ██║░░██║███████╗██████╔╝░░░██║░░░██║░░██║╚██████╔╝██║░░██║██║░░██║██║░╚███║░░░██║░░░".colorize(:light_blue)
+    puts "╚═╝░░░░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚══════╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░░░╚═╝░░░".colorize(:blue)
+    puts "**********************************************************************************************************".colorize(:red)
+    puts "\n\n"
+    caller = OpeningOptions.new
+    caller.opening_choice
 elsif
   option = ARGV[0]
   ARGV.clear
-  puts "You have selected #{option}"
+  puts "You have selected #{option}".colorize(:red)
   help_menu(option)
 else
 end
-
-

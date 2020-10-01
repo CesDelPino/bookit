@@ -28,23 +28,11 @@ end
 
 #checking for ARG value and routing to opening_options or help statement 
 if ARGV.empty?
-  puts "Welcome to the bookit app for".colorize(:red)
-  using RubyFiglet
-  My_restaurant = "My Restaurant \n bookings"
-  My_restaurant.art!
-  puts My_restaurant
-    # puts "\n"
-    # puts "                         Welcome to the bookit app for".colorize(:red)
-    # puts "\n"
-    # puts "**********************************************************************************************************".colorize(:red)
-    # puts "███╗░░░███╗██╗░░░██╗  ██████╗░███████╗░██████╗████████╗░█████╗░██╗░░░██╗██████╗░░█████╗░███╗░░██╗████████╗".colorize(:light_blue)
-    # puts "████╗░████║╚██╗░██╔╝  ██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║░░░██║██╔══██╗██╔══██╗████╗░██║╚══██╔══╝".colorize(:blue)
-    # puts "██╔████╔██║░╚████╔╝░  ██████╔╝█████╗░░╚█████╗░░░░██║░░░███████║██║░░░██║██████╔╝███████║██╔██╗██║░░░██║░░░".colorize(:light_blue)
-    # puts "██║╚██╔╝██║░░╚██╔╝░░  ██╔══██╗██╔══╝░░░╚═══██╗░░░██║░░░██╔══██║██║░░░██║██╔══██╗██╔══██║██║╚████║░░░██║░░░".colorize(:blue)
-    # puts "██║░╚═╝░██║░░░██║░░░  ██║░░██║███████╗██████╔╝░░░██║░░░██║░░██║╚██████╔╝██║░░██║██║░░██║██║░╚███║░░░██║░░░".colorize(:light_blue)
-    # puts "╚═╝░░░░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚══════╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░░░╚═╝░░░".colorize(:blue)
-    # puts "**********************************************************************************************************".colorize(:red)
-    # puts "\n\n"
+    puts "Welcome to the bookit app for".colorize(:red)
+    using RubyFiglet
+    My_restaurant = "My Restaurant"
+    My_restaurant.art!("roman")
+    puts My_restaurant.colorize(:blue)
     caller = OpeningOptions.new
     caller.opening_choice
 
@@ -55,4 +43,3 @@ elsif
   help_menu(option)
 else
 end
-                                                

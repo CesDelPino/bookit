@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/CesDelPino/bookit"
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["changelog_uri"] = "https://github.com/CesDelPino/bookit/blob/master/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "tty-prompt", "~> 0.22.0"
   spec.add_dependency "colorize", "~> 0.8.1"
+  spec.add_dependency 'ruby_figlet', '~> 0.6.1'
 end
 
 

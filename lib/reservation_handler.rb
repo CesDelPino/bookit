@@ -1,4 +1,4 @@
-require "json"
+require 'json'
 
 class ReservationHandler
   attr_reader :open_slots
@@ -7,7 +7,7 @@ class ReservationHandler
   end
 
   def find_bookings
-    confirmed_bookings = File.read(Dir.pwd + "/lib/DATABASE.json")
+    confirmed_bookings = File.read(Dir.pwd + '/lib/DATABASE.json')
     @bookings = JSON.parse(confirmed_bookings)
   end
 
@@ -18,65 +18,63 @@ class ReservationHandler
   def find_open_times
     @open_slots = []
     @bookings.each do |booking|
-      if booking.value?("open")
-        @open_slots << booking["time"]
-      end
+      @open_slots << booking['time'] if booking.value?('open')
     end
   end
 
   def free_times_printer
-    puts "These time slots are open today".colorize(:light_blue)
+    puts 'These time slots are open today'.colorize(:light_blue)
     @open_slots.each do |time|
       puts "#{time}:00 is free"
     end
-    say("These are the open slots")
+    say('These are the open slots')
   end
 
   def display_all
-    puts " " * 20 + "Todays bookings are:".colorize(:blue)
-    puts "*".colorize(:yellow) * 70
+    puts ' ' * 20 + 'Todays bookings are:'.colorize(:blue)
+    puts '*'.colorize(:yellow) * 70
     @bookings.each do |booking|
-      if booking["name"] != "open"
-        puts "#{booking["time"]}:00 is booked by #{booking["name"]}, notes: #{booking["notes"]} ph: #{booking["phone"]}"
+      if booking['name'] != 'open'
+        puts "#{booking['time']}:00 is booked by #{booking['name']}, notes: #{booking['notes']} ph: #{booking['phone']}"
       else
-        puts "#{booking["time"]}:00 hours is open"
+        puts "#{booking['time']}:00 hours is open"
       end
     end
-    puts "*".colorize(:yellow) * 70
-    say("These are todays bookings")
+    puts '*'.colorize(:yellow) * 70
+    say('These are todays bookings')
   end
 
   def find_index(hour)
     @bookings.index do |booking|
-      booking["time"] == hour
+      booking['time'] == hour
     end
   end
 
   def slot_checker
-    puts "what time would you like to book?".colorize(:yellow).colorize(:background => :blue)
+    puts 'what time would you like to book?'.colorize(:yellow).colorize(background: :blue)
     time = select_time
     if @open_slots.include?(time)
       make_booking(time)
     else
-      puts "that time is not available".colorize(:yellow).colorize(:background => :red)
-      say("Error, that time is not available")
+      puts 'that time is not available'.colorize(:yellow).colorize(background: :red)
+      say('Error, that time is not available')
     end
   end
 
   def make_booking(time)
     index = find_index(time)
     last = PROMPT.collect do
-      key("name").ask("What is the reservation name?".colorize(:yellow).colorize(:background => :blue))
-      key("phone").ask("Contact number?".colorize(:yellow).colorize(:background => :blue))
-      key("notes").ask("Special requirements?".colorize(:yellow).colorize(:background => :blue))
+      key('name').ask('What is the reservation name?'.colorize(:yellow).colorize(background: :blue))
+      key('phone').ask('Contact number?'.colorize(:yellow).colorize(background: :blue))
+      key('notes').ask('Special requirements?'.colorize(:yellow).colorize(background: :blue))
     end
-    user_input = { "time" => time }.merge(last)
+    user_input = { 'time' => time }.merge(last)
     @bookings[index] = user_input
   end
 
   def select_time
-    times = %w(12 13 14 15 16 17 18 19 20 21)
-    PROMPT.select("Select the booking".colorize(:red), times)
+    times = %w[12 13 14 15 16 17 18 19 20 21]
+    PROMPT.select('Select the booking'.colorize(:red), times)
   end
 
   # def select_time
@@ -87,14 +85,14 @@ class ReservationHandler
   def delete_booking
     time = select_time
     index = find_index(time)
-    info = { "time" => time, "name" => "open", "phone" => "nil", "notes" => "nil" }
-    puts "The booking for #{@bookings[index]["name"]} has been deleted".colorize(:red)
+    info = { 'time' => time, 'name' => 'open', 'phone' => 'nil', 'notes' => 'nil' }
+    puts "The booking for #{@bookings[index]['name']} has been deleted".colorize(:red)
     @bookings[index] = info
-    say("booking deleted")
+    say('booking deleted')
   end
 
   def save_changes
-    File.write(Dir.pwd + "/lib/DATABASE.json", JSON.pretty_generate(@bookings))
-    say("all changes, saved")
+    File.write(Dir.pwd + '/lib/DATABASE.json', JSON.pretty_generate(@bookings))
+    say('all changes, saved')
   end
 end

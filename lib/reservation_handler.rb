@@ -19,7 +19,7 @@ class ReservationHandler
       @open_slots = []
       @bookings.each do |booking|
           if booking.value?("open")
-          @open_slots<<booking["time"]
+          @open_slots << booking["time"]
           end
       end  
     end
@@ -33,8 +33,8 @@ class ReservationHandler
     end
     
     def display_all
-        puts "                      Todays bookings are:".colorize(:blue)
-        puts "**************************************************************************".colorize(:yellow)
+        puts " "*20 +"Todays bookings are:".colorize(:blue)
+        puts "*".colorize(:yellow)*70
         @bookings.each do |booking|
           if booking["name"] != "open"
           puts "#{booking["time"]}:00 is booked by #{booking["name"]}, notes: #{booking["notes"]} ph: #{booking["phone"]} "
@@ -42,7 +42,7 @@ class ReservationHandler
             puts "#{booking["time"]}:00 hours is open"
           end
         end
-        puts "**************************************************************************".colorize(:yellow)
+        puts "*".colorize(:yellow)*70
         say("These are todays bookings")
     end
 
@@ -54,7 +54,7 @@ class ReservationHandler
     
     def slot_checker
       puts "what time would you like to book?".colorize(:yellow ).colorize(:background => :blue)
-      time = gets.chomp
+      time = select_time
       if @open_slots.include?(time)
         make_booking(time)
       else
@@ -83,23 +83,13 @@ class ReservationHandler
       say("booking saved")
     end
 
-    def modify_booking
-      PROMPT.select("Select the booking".colorize(:red)) do |menu|
-        menu.choice({ name: "12", value: '12' })
-        menu.choice({ name: "13", value: '13' })
-        menu.choice({ name: "14", value: '14' })
-        menu.choice({ name: "15", value: '15' })
-        menu.choice({ name: "16", value: '16' })
-        menu.choice({ name: "17", value: '17' })
-        menu.choice({ name: "18", value: '18' })
-        menu.choice({ name: "19", value: '19' })
-        menu.choice({ name: "20", value: '20' })
-        menu.choice({ name: "21", value: '21' })
-      end
+    def select_time
+      times = %w(12 13 14 15 16 17 18 19 20 21)
+      PROMPT.select("Select the booking".colorize(:red), times)
     end
 
     def delete_booking
-      time = modify_booking
+      time = select_time
       index = find_index(time)
       info = {"time" => time, "name" => "open", "phone"=> "nil", "notes"=> "nil"}
       puts "The booking for #{@bookings[index]["name"]} has been deleted".colorize(:red)

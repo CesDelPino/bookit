@@ -30,7 +30,7 @@ class OpeningOptions
         @reservation.find_open_times
         @reservation.slot_checker
       when "3" 
-        @reservation.make_booking(@reservation.modify_booking)
+        @reservation.make_booking(@reservation.select_time)
       when "4"
         @reservation.delete_booking
       when "5"

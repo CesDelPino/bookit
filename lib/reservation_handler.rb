@@ -47,8 +47,8 @@ class ReservationHandler
     end
 
     def find_index(hour)
-      @bookings.index do |hash| 
-        hash["time"] == hour
+      @bookings.index do |booking| 
+        booking["time"] == hour
       end
     end
     
@@ -84,14 +84,22 @@ class ReservationHandler
     end
 
     def modify_booking
-      puts "Which time to modify?"
-      time = gets.chomp
-      make_booking(time)
+      PROMPT.select("Select the booking".colorize(:red)) do |menu|
+        menu.choice({ name: "12", value: '12' })
+        menu.choice({ name: "13", value: '13' })
+        menu.choice({ name: "14", value: '14' })
+        menu.choice({ name: "15", value: '15' })
+        menu.choice({ name: "16", value: '16' })
+        menu.choice({ name: "17", value: '17' })
+        menu.choice({ name: "18", value: '18' })
+        menu.choice({ name: "19", value: '19' })
+        menu.choice({ name: "20", value: '20' })
+        menu.choice({ name: "21", value: '21' })
+      end
     end
 
     def delete_booking
-      puts "Which time to delete?"
-      time = gets.chomp
+      time = modify_booking
       index = find_index(time)
       info = {"time" => time, "name" => "open", "phone"=> "nil", "notes"=> "nil"}
       puts "The booking for #{@bookings[index]["name"]} has been deleted".colorize(:red)

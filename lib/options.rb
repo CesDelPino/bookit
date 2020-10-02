@@ -30,7 +30,7 @@ class OpeningOptions
         @reservation.find_open_times
         @reservation.slot_checker
       when "3" 
-        @reservation.modify_booking
+        @reservation.make_booking(@reservation.modify_booking)
       when "4"
         @reservation.delete_booking
       when "5"
@@ -38,8 +38,8 @@ class OpeningOptions
       when "6"
         @reservation.save_changes
         exit
-      else 
-        puts "invalid selection".colorize(:red)
+      # else 
+      #   puts "invalid selection".colorize(:red)
       end
     end
   end

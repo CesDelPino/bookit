@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "tty-prompt", "~> 0.22.0"
   spec.add_dependency "colorize", "~> 0.8.1"
   spec.add_dependency 'ruby_figlet', '~> 0.6.1'
+  spec.add_dependency 'rubocop', '~> 0.92.0'
 end
 
 

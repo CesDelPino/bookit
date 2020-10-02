@@ -63,30 +63,27 @@ class ReservationHandler
       end
     end
 
-
     def make_booking(time)
       index = find_index(time)
       info = {"time" => time}
-      puts "What is the reservation name?".colorize(:yellow ).colorize(:background => :blue)
-      print "-->"
-      name = gets.chomp
-      info.store("name", name)
-      puts "what is the phone number".colorize(:yellow ).colorize(:background => :blue)
-      print "-->"
-      phone = gets.chomp
-      info.store("phone", phone)
-      puts "any special requirements?".colorize(:yellow ).colorize(:background => :blue)
-      print "-->"
-      requirements = gets.chomp
-      info.store("notes", requirements)
-      @bookings[index] = info
-      say("booking saved")
+      last = PROMPT.collect do
+      key("name").ask("What is the reservation name?".colorize(:yellow ).colorize(:background => :blue))
+      key("phone").ask("Contact number?".colorize(:yellow ).colorize(:background => :blue))
+      key("notes").ask("Special requirements?".colorize(:yellow ).colorize(:background => :blue))
+      end
+      full = info.merge(last)
+      @bookings[index] = full
     end
 
     def select_time
       times = %w(12 13 14 15 16 17 18 19 20 21)
       PROMPT.select("Select the booking".colorize(:red), times)
     end
+
+    # def select_time
+    #   open = @open_slots
+    #   PROMPT.select("Select the booking".colorize(:red), open)
+    # end
 
     def delete_booking
       time = select_time

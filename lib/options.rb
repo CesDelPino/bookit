@@ -1,32 +1,28 @@
+require "tty-prompt"
 require_relative "reservation"
 require_relative "reservation_handler"
+
 
 class OpeningOptions
   def initialize
     @reservation = ReservationHandler.new
   end
 
-  def selection
-    choice = gets.chomp
-  end
-
-  def show_options
-    puts "\n"
-    puts "   Please select from the following options    "
-    puts "\n"
-    puts "**>To see todays availability select 1".colorize(:green)
-    puts "**>To make a booking for today select 2".colorize(:green)
-    puts "**>To modify a booking select 3".colorize(:green)
-    puts "**>To ".colorize(:green)+"DELETE".colorize(:red) + " a booking select 4".colorize(:green)
-    puts "**>To display all bookings select 5".colorize(:green)
-    puts "**>To EXIT and SAVE changes select 6".colorize(:green)
-    print "-->"
+  def menu
+    PROMPT.select("Welcome to your bookings app".colorize(:red)) do |menu|
+      menu.choice({ name: "See todays free slots", value: '1' })
+      menu.choice({ name: "Make a booking", value: '2' })
+      menu.choice({ name: "Modify a booking", value: '3' })
+      menu.choice({ name: "Delete a booking", value: '4' })
+      menu.choice({ name: "Display all bookings", value: '5' })
+      menu.choice({ name: "EXIT and SAVE changes", value: '6' })
+    end
   end
 
   def opening_choice
     loop do
-      show_options
-      case selection
+      # show_options
+      case menu
       when "1"       
         @reservation.find_open_times
         @reservation.free_times_printer

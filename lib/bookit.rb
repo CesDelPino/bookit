@@ -3,6 +3,8 @@ require "ruby_figlet"
 require_relative "bookit/version"
 require_relative "options"
 
+PROMPT = TTY::Prompt.new
+
 # module Bookit
 #   class Error < StandardError; 
 #   end
@@ -35,7 +37,6 @@ if ARGV.empty?
     puts My_restaurant.colorize(:blue)
     caller = OpeningOptions.new
     caller.opening_choice
-
 elsif
   option = ARGV[0]
   ARGV.clear

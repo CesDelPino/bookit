@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+# gems
+
+require 'terminal-table'
+require 'tty-prompt'
+require 'colorize'
+require 'ruby_figlet'
+require 'optparse'
+require 'json'
+
+# files
+require_relative '../lib/options'
+require_relative '../lib/reservation_handler'
+require_relative '../lib/reservation'
+
+
+VERSION = "0.0.1"
+
+if ARGV.empty?
+  ARGV[0] = "-r"
+end
+
+options = {}
+parser = OptionParser.new do |opts|
+  opts.banner = 'Welcome to the Bookit app help menu'.colorize(:red)
+
+  opts.on('-v', '--version', 'Display the version') do
+    puts "Bookit Version #{VERSION}".colorize(:red) 
+  end
+
+  opts.on('-h', '--help', 'Display the help message') do
+    puts opts
+    exit
+  end
+
+  opts.on('-c', '--compliment', 'Have a compliment!') do
+    puts 'You look dashing!'.colorize(:yellow)
+    exit
+  end
+
+    opts.on('-e', '--encourage', 'An encouraging thought') do
+    puts "You can achieve greatness!".colorize(:yellow)
+    exit
+  end
+
+    opts.on('-g', '--greatest', "Who's the greatest?") do
+    puts "Yes, you are the greatest. Pat yourself on the back!".colorize(:yellow)
+    exit
+  end
+
+  opts.on('-r', '--run', 'Run the Bookit app') do
+    caller = OpeningOptions.new
+  end
+end
+
+parser.parse!

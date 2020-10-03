@@ -31,7 +31,7 @@ end
 if ARGV.empty?
   puts 'Welcome to the bookit app for'.colorize(:red)
   using RubyFiglet
-  My_restaurant = 'My Restaurant'.freeze
+  My_restaurant = 'My Restaurant'
   My_restaurant.art!('roman')
   puts My_restaurant.colorize(:blue)
   caller = OpeningOptions.new

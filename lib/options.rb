@@ -20,13 +20,10 @@ class OpeningOptions
 
   def opening_choice
     loop do
-      # show_options
       case menu
       when '1'
-        # @reservation.find_open_times
         @reservation.free_times_printer
       when '2'
-        @reservation.find_open_times
         @reservation.slot_checker
       when '3'
         @reservation.make_booking(@reservation.select_time)
@@ -37,8 +34,6 @@ class OpeningOptions
       when '6'
         @reservation.save_changes
         exit
-        # else
-        #   puts "invalid selection".colorize(:red)
       end
     end
   end

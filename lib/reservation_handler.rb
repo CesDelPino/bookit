@@ -35,7 +35,7 @@ class ReservationHandler
   def display_all
     rows = []
     @bookings.each do |booking|
-      new_row = [booking['time'], booking['name'], booking['phone'], booking['notes']]
+      new_row = [booking['time']+':00', booking['name'], booking['phone'], booking['notes']]
       rows << new_row
     end
     table = Terminal::Table.new :title => "Todays Bookings", :headings => ['Time', 'Name', 'Phone', 'Notes'], :rows => rows
@@ -49,6 +49,7 @@ class ReservationHandler
   end
 
   def slot_checker
+    find_open_times
     puts 'what time would you like to book?'.colorize(:yellow).colorize(background: :blue)
     time = select_time
     if @open_slots.include?(time)

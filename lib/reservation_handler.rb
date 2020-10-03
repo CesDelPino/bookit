@@ -1,23 +1,23 @@
 require 'json'
-require 'terminal-table'
+# require 'terminal-table'
+
+require_relative 'reservation'
 
 class ReservationHandler
+  PROMPT = TTY::Prompt.new
+  
   attr_reader :open_slots
   def initialize
     find_bookings
+    @open_slots = []
   end
 
   def find_bookings
-    confirmed_bookings = File.read(Dir.pwd + '/lib/DATABASE.json')
+    confirmed_bookings = File.read(DATABASE)
     @bookings = JSON.parse(confirmed_bookings)
   end
 
-  def say(param)
-    `say #{param}`
-  end
-
   def find_open_times
-    @open_slots = []
     @bookings.each do |booking|
       @open_slots << booking['time'] if booking.value?('open')
     end
@@ -56,7 +56,6 @@ class ReservationHandler
       make_booking(time)
     else
       puts 'that time is not available'.colorize(:yellow).colorize(background: :red)
-      say('Error, that time is not available')
     end
   end
 
@@ -69,6 +68,7 @@ class ReservationHandler
     end
     user_input = { 'time' => time }.merge(last)
     @bookings[index] = user_input
+    puts "Booking is accepted".colorize(:red)
   end
 
   def select_time
@@ -76,22 +76,15 @@ class ReservationHandler
     PROMPT.select('Select the booking'.colorize(:red), times)
   end
 
-  # def select_time
-  #   open = @open_slots
-  #   PROMPT.select("Select the booking", open)
-  # end
-
   def delete_booking
     time = select_time
     index = find_index(time)
     info = { 'time' => time, 'name' => 'open', 'phone' => 'nil', 'notes' => 'nil' }
     puts "The booking for #{@bookings[index]['name']} has been deleted".colorize(:red)
     @bookings[index] = info
-    say('booking deleted')
   end
 
   def save_changes
-    File.write(Dir.pwd + '/lib/DATABASE.json', JSON.pretty_generate(@bookings))
-    say('all changes, saved')
+    File.write(DATABASE, JSON.pretty_generate(@bookings))
   end
 end

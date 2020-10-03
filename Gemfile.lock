@@ -5,6 +5,7 @@ PATH
       colorize (~> 0.8.1)
       rubocop (~> 0.92.0)
       ruby_figlet (~> 0.6.1)
+      terminal-table (~> 1.8)
       tty-prompt (~> 0.22.0)
 
 GEM
@@ -48,6 +49,8 @@ GEM
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
     ruby_figlet (0.6.1)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     tty-color (0.5.2)
     tty-cursor (0.7.1)
     tty-prompt (0.22.0)
@@ -71,6 +74,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop (~> 0.92.0)
   ruby_figlet (~> 0.6.1)
+  terminal-table (~> 1.8)
   tty-prompt (~> 0.22.0)
 
 BUNDLED WITH

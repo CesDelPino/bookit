@@ -23,7 +23,7 @@ class OpeningOptions
       # show_options
       case menu
       when '1'
-        @reservation.find_open_times
+        # @reservation.find_open_times
         @reservation.free_times_printer
       when '2'
         @reservation.find_open_times

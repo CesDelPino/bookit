@@ -1,4 +1,5 @@
 require 'json'
+require 'terminal-table'
 
 class ReservationHandler
   attr_reader :open_slots
@@ -23,25 +24,22 @@ class ReservationHandler
   end
 
   def free_times_printer
+    find_open_times
     puts 'These time slots are open today'.colorize(:light_blue)
     @open_slots.each do |time|
       puts "#{time}:00 is free"
     end
-    say('These are the open slots')
   end
 
+
   def display_all
-    puts ' ' * 20 + 'Todays bookings are:'.colorize(:blue)
-    puts '*'.colorize(:yellow) * 70
+    rows = []
     @bookings.each do |booking|
-      if booking['name'] != 'open'
-        puts "#{booking['time']}:00 is booked by #{booking['name']}, notes: #{booking['notes']} ph: #{booking['phone']}"
-      else
-        puts "#{booking['time']}:00 hours is open"
-      end
+      new_row = [booking['time'], booking['name'], booking['phone'], booking['notes']]
+      rows << new_row
     end
-    puts '*'.colorize(:yellow) * 70
-    say('These are todays bookings')
+    table = Terminal::Table.new :title => "Todays Bookings", :headings => ['Time', 'Name', 'Phone', 'Notes'], :rows => rows
+    puts table
   end
 
   def find_index(hour)

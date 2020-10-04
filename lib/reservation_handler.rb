@@ -1,15 +1,14 @@
 require 'json'
-# require 'terminal-table'
 
 require_relative 'reservation'
 
 class ReservationHandler
   PROMPT = TTY::Prompt.new
-  
-  attr_reader :open_slots
+
+  # attr_reader :open_slots
+
   def initialize
     find_bookings
-    @open_slots = []
   end
 
   def find_bookings
@@ -18,6 +17,7 @@ class ReservationHandler
   end
 
   def find_open_times
+    @open_slots = []
     @bookings.each do |booking|
       @open_slots << booking['time'] if booking.value?('open')
     end

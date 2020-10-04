@@ -15,7 +15,7 @@ require_relative '../lib/reservation_handler'
 require_relative '../lib/reservation'
 
 
-VERSION = "0.0.1"
+VERSION = "0.1.0"
 
 if ARGV.empty?
   ARGV[0] = "-r"

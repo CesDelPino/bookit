@@ -95,7 +95,15 @@ User interaction is taken care of by the options menu loop. It loops continuousl
 The user interface is driven by the TTY prompt GEM. Wherever possible, menus populate with options that will take care of errors appearing from the gets command. Instructions on how to select options are in the form of a prompt to move cursor keys. The prompt disappears after the first movement. This sort of handling is ubiquitous as should not need further instruction. When the user is asked for data input. It is also done with TTY prompt.
 
 ## Help menu.
-The app will display a help menu when passed -h on load.
+
+```
+    -v, --version                    Display the version
+    -h, --help                       Display the help message
+    -c, --compliment                 Have a compliment!
+    -e, --encourage                  An encouraging thought
+    -g, --greatest                   Who's the greatest?
+    -r, --run                        Run the Bookit app
+```
 
 ### Implementation 
 

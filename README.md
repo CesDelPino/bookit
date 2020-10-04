@@ -57,7 +57,7 @@ The app is available as open source under the terms of the [MIT License](https:/
 
 
 ## Purpose and Scope
-#### Description
+### Description
 The restaurant booking app will allow a restaurant staff member ("the user") that is handling bookings a reliable way to Make, Modify, and delete restaurant bookings for clients. They will also be able to display a summary of the whole days' activities for any restaurant staff member.
 
 Although developed to satisfy the requirements of the Coder Academy Terminal App assignment. The app was designed to eliminate pen and paper from the users' workflow yet, while also providing a reliable method to keep track of incoming booking requests and guaranteeing there are no double bookings. It allows for the storing of basic data for every booking including Names, Contact Details, and special requests.

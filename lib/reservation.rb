@@ -15,3 +15,6 @@ class Reservation
   end
 
 end
+
+class InvalidTextInput < StandardError
+end

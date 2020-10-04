@@ -62,9 +62,12 @@ class ReservationHandler
   def make_booking(time)
     index = find_index(time)
     last = PROMPT.collect do
-      key('name').ask('What is the reservation name?'.colorize(:yellow).colorize(background: :blue))
-      key('phone').ask('Contact number?'.colorize(:yellow).colorize(background: :blue))
+      key('name').ask('What is the reservation name?'.colorize(:yellow).colorize(background: :blue),required: true)
+      key('phone').ask('Contact number?'.colorize(:yellow).colorize(background: :blue), required: true, validate: /^\d[0-9]{7,9}$/)
       key('notes').ask('Special requirements?'.colorize(:yellow).colorize(background: :blue))
+      rescue InvalidTextInput
+      puts 'invalid text input'.colorize(:red)
+      retry
     end
     user_input = { 'time' => time }.merge(last)
     @bookings[index] = user_input
